@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProjectList from "./pages/ProjectList";
 import ProjectCreate from "./pages/ProjectCreate";
@@ -27,3 +28,18 @@ root.render(
     <Main />
   </React.StrictMode>
 );
+=======
+
+const Main = () => {
+    return <div>hello world</div>;
+};
+
+const root = ReactDOM.createRoot(document.getElementById("app"));
+root.render(
+    <React.StrictMode>
+        <Main />
+    </React.StrictMode>
+);
+
+export default Main;
+>>>>>>> upstream/master
