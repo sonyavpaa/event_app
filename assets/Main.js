@@ -12,9 +12,9 @@ const Main = () => {
     <Router>
       <Header />
       <Routes>
-        <Route index element={<EventList />} />
+        <Route index element={<Home />} />
         <Route path="/event/:id" element={<EventShow />} />
-        <Route path="/createEvent" element={<CreateEvent />} />
+        {/* <Route path="/createEvent" element={<CreateEvent />} /> */}
       </Routes>
       <Footer />
     </Router>
