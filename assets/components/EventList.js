@@ -34,12 +34,12 @@ const EventList = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{event.name.fi}</h5>
-
-                  <p>{event?.short_description.fi}</p>
+                  <p className="text-gray-dark">
+                    {event?.short_description.fi}
+                  </p>
                   <p className="text-danger">{event.start_time}</p>
                   <Link
-                    to={`/event/${event.id}`}
-                    state={{ event: event }}
+                    to={`event/${event.id}`}
                     className="btn btn-primary mx-1"
                   >
                     See more

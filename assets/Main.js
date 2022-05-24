@@ -4,13 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import EventShow from "./components/EventShow";
+import EventList from "./components/EventList";
 
 const Main = () => {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route index element={<Home />} />
+        <Route index element={<EventList />} />
+        <Route path="/event/:id" element={<EventShow />} />
       </Routes>
       <Footer />
     </Router>
