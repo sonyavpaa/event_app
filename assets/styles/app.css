@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-*,
-*::before,
+* *::before,
 *::after {
   margin: 0;
   padding: 0;
@@ -19,8 +17,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-=======
-* {
+}
+x * {
   background-color: white;
->>>>>>> upstream/master
 }
