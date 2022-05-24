@@ -11,3 +11,6 @@ git fetch upstream
 git merge upstream/master
 
 composer require symfony/webpack-encore-bundle
+
+24.5. ->
+npm install axios
