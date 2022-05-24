@@ -14,6 +14,7 @@ const Main = () => {
       <Routes>
         <Route index element={<EventList />} />
         <Route path="/event/:id" element={<EventShow />} />
+        <Route path="/createEvent" element={<CreateEvent />} />
       </Routes>
       <Footer />
     </Router>
