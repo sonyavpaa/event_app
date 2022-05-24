@@ -3,7 +3,6 @@ const Encore = require("@symfony/webpack-encore");
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
-<<<<<<< HEAD
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
 }
 
@@ -25,29 +24,6 @@ Encore
 
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge("./assets/controllers.json")
-=======
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
-}
-
-Encore
-    // directory where compiled assets will be stored
-    .setOutputPath("public/build/")
-    // public path used by the web server to access the output path
-    .setPublicPath("/build")
-    // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
-
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
-    .addEntry("app", "./assets/app.js")
-
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge("./assets/controllers.json")
->>>>>>> upstream/master
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
@@ -69,7 +45,6 @@ Encore
   // enables hashed filenames (e.g. app.abc123.css)
   .enableVersioning(Encore.isProduction())
 
-<<<<<<< HEAD
   .configureBabel((config) => {
     config.plugins.push("@babel/plugin-proposal-class-properties");
   })
@@ -79,17 +54,6 @@ Encore
     config.useBuiltIns = "usage";
     config.corejs = 3;
   })
-=======
-    .configureBabel((config) => {
-        config.plugins.push("@babel/plugin-proposal-class-properties");
-    })
-
-    // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = "usage";
-        config.corejs = 3;
-    })
->>>>>>> upstream/master
 
   // enables Sass/SCSS support
   //.enableSassLoader()
@@ -97,13 +61,8 @@ Encore
   // uncomment if you use TypeScript
   //.enableTypeScriptLoader()
 
-<<<<<<< HEAD
   // uncomment if you use React
   .enableReactPreset();
-=======
-    // uncomment if you use React
-    .enableReactPreset();
->>>>>>> upstream/master
 
 // uncomment to get integrity="..." attributes on your script & link tags
 // requires WebpackEncoreBundle 1.4 or higher

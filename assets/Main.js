@@ -1,45 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProjectList from "./pages/ProjectList";
-import ProjectCreate from "./pages/ProjectCreate";
-import ProjectEdit from "./pages/ProjectEdit";
-import ProjectShow from "./pages/ProjectShow";
+import Home from "./components/Home";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-function Main() {
+const Main = () => {
   return (
     <Router>
+      <Header />
       <Routes>
-        <Route exact path="/" element={<ProjectList />} />
-        <Route path="/create" element={<ProjectCreate />} />
-        <Route path="/edit/:id" element={<ProjectEdit />} />
-        <Route path="/show/:id" element={<ProjectShow />} />
+        <Route index element={<Home />} />
       </Routes>
+      <Footer />
     </Router>
   );
-}
-
-export default Main;
+};
 
 const root = ReactDOM.createRoot(document.getElementById("app"));
+
 root.render(
   <React.StrictMode>
     <Main />
   </React.StrictMode>
 );
-=======
-
-const Main = () => {
-    return <div>hello world</div>;
-};
-
-const root = ReactDOM.createRoot(document.getElementById("app"));
-root.render(
-    <React.StrictMode>
-        <Main />
-    </React.StrictMode>
-);
 
 export default Main;
->>>>>>> upstream/master
