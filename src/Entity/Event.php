@@ -31,23 +31,23 @@ class Event
     #[ORM\Column(type: 'string', length: 255)]
     private $location;
 
-    #[ORM\Column(type: 'date')]
-    private $dateStart;
-
-    #[ORM\Column(type: 'date')]
-    private $dateEnd;
-
-    #[ORM\Column(type: 'time')]
-    private $timeStart;
-
-    #[ORM\Column(type: 'time')]
-    private $timeEnd;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $price;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $startDate;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $endDate;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $startTime;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $endTime;
 
     public function getId(): ?int
     {
@@ -126,54 +126,6 @@ class Event
         return $this;
     }
 
-    public function getDateStart(): ?\DateTimeInterface
-    {
-        return $this->dateStart;
-    }
-
-    public function setDateStart(\DateTimeInterface $dateStart): self
-    {
-        $this->dateStart = $dateStart;
-
-        return $this;
-    }
-
-    public function getDateEnd(): ?\DateTimeInterface
-    {
-        return $this->dateEnd;
-    }
-
-    public function setDateEnd(\DateTimeInterface $dateEnd): self
-    {
-        $this->dateEnd = $dateEnd;
-
-        return $this;
-    }
-
-    public function getTimeStart(): ?\DateTimeInterface
-    {
-        return $this->timeStart;
-    }
-
-    public function setTimeStart(\DateTimeInterface $timeStart): self
-    {
-        $this->timeStart = $timeStart;
-
-        return $this;
-    }
-
-    public function getTimeEnd(): ?\DateTimeInterface
-    {
-        return $this->timeEnd;
-    }
-
-    public function setTimeEnd(\DateTimeInterface $timeEnd): self
-    {
-        $this->timeEnd = $timeEnd;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -194,6 +146,54 @@ class Event
     public function setPrice(string $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?string
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(string $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?string
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(string $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getStartTime(): ?string
+    {
+        return $this->startTime;
+    }
+
+    public function setStartTime(string $startTime): self
+    {
+        $this->startTime = $startTime;
+
+        return $this;
+    }
+
+    public function getEndTime(): ?string
+    {
+        return $this->endTime;
+    }
+
+    public function setEndTime(string $endTime): self
+    {
+        $this->endTime = $endTime;
 
         return $this;
     }
