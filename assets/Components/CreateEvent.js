@@ -42,16 +42,15 @@ const CreateEvent = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>Create Event</h2>
-        <div className="submitMessage"></div>
-      </div>
+    <div className="formFrame">
+      <h2>Create Event</h2>
+      <div className="submitMessage"></div>
+
       <form onSubmit={submitData}>
         <div>
-          <div className="form-group">
+          <div className="d-flex form-group my-1">
             <input
-              className="form-control"
+              className=" d-flex form-control"
               type="text"
               name="eventname"
               id="eventname"
@@ -59,7 +58,7 @@ const CreateEvent = () => {
               placeholder="Event name"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group my-1">
             <input
               className="form-control"
               type="text"
@@ -79,25 +78,29 @@ const CreateEvent = () => {
               placeholder="Description"
             />
           </div>
-          <div className="category">
-            <label htmlFor="category">Category</label>
-            <select
-              className="form-control"
-              name="category"
-              id="category"
-              onChange={changeCategory}
-            >
-              {categories.map((c) => (
-                <option className="form-control" key={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
+          <div className="category from-group row my-1">
+            <label htmlFor="category" className="col-sm-2 col-form-label">
+              Category
+            </label>
+            <div className="col-sm-10">
+              <select
+                className="form-control my-1"
+                name="category"
+                id="category"
+                onChange={changeCategory}
+              >
+                {categories.map((c) => (
+                  <option className="form-control" key={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div>
             <div className="locationFrame">
               <input
-                className="form-control"
+                className="form-control my-1"
                 type="text"
                 name="street_address"
                 id="street_address"
@@ -106,7 +109,7 @@ const CreateEvent = () => {
               />
 
               <input
-                className="form-control"
+                className="form-control my-1"
                 type="text"
                 name="city"
                 id="city"
@@ -115,18 +118,24 @@ const CreateEvent = () => {
               />
             </div>
           </div>
-          <div>
-            <label htmlFor="startDateTime">Start date and time</label>
+          <div className="form-group  my-3">
+            <label htmlFor="startDateTime" className="form-control">
+              Start date and time
+            </label>
             <input
+              className="form-control"
               type="datetime-local"
               name="startDateTime"
               id="startDateTime"
               onChange={changeData}
             />
           </div>
-          <div>
-            <label htmlFor="endDateTime">End date and time</label>
+          <div className="form-group my-3">
+            <label htmlFor="endDateTime" className="form-control">
+              End date and time
+            </label>
             <input
+              className="form-control"
               type="datetime-local"
               name="endDateTime"
               id="endDateTime"
@@ -135,7 +144,7 @@ const CreateEvent = () => {
           </div>
           <div>
             <input
-              className="form-control"
+              className="form-control my-1"
               type="text"
               name="price"
               id="price"
@@ -145,7 +154,7 @@ const CreateEvent = () => {
           </div>
           <div>
             <input
-              className="form-control"
+              className="form-control my-1"
               type="url"
               name="image"
               id="image"
@@ -154,7 +163,11 @@ const CreateEvent = () => {
             />
           </div>
         </div>
-        <input className="button" type="submit" value="Add event" />
+        <input
+          className="button form-control"
+          type="submit"
+          value="Add event"
+        />
       </form>
     </div>
   );
