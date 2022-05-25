@@ -30,3 +30,24 @@ form {
   width: 80%;
   align-items: center;
 }
+
+.signupFormFrame,
+.loginFormFrame {
+  padding: 5em 0 0 0;
+}
+
+.signupForm input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid black;
+  margin: 1em 0 0 0;
+}
+
+.signupForm button {
+  margin: 1em 0 0 0;
+}
+
+.loginForm input,
+.loginForm button {
+  margin: 1em 0 0 0;
+}
