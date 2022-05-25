@@ -22,25 +22,25 @@ class EventsController extends AbstractController
         
         foreach($events as $event) {
             $data[] = [
-                'id'=> $event->getId(),
-                'name' => $event->getName(),
-                'organizer' => $event->getOrganizer(),
-                'description'=>$event->getDescription(),
-                'category'=>$event->getCategory(),
-                'tags'=>$event->getTags(),
-                'location'=>$event->getLocation(),
-                'startDate'=>$event->getStartDate(),
-                'endDate'=>$event->getEndDate(),
-                'startTime'=>$event->getStartTime(),
-                'endTime'=>$event->getEndTime(),
-                'price'=>$event->getPrice(),
-                'image'=>$event->getImage(),
-                ];
+            'id'=> $event->getId(),
+            'name' => $event->getName(),
+            'organizer' => $event->getOrganizer(),
+            'description'=>$event->getDescription(),
+            'category'=>$event->getCategory(),
+            'tags'=>$event->getTags(),
+            'startDateTime'=>$event->getStartDateTime(),
+            'endDateTime'=>$event->getEndDateTime(),
+            'price'=>$event->getPrice(),
+            'image'=>$event->getImage(),
+            'streetname'=>$event->getStreetName(),
+            'city'=>$event->getCity(),
+            'venue'=>$event->getVenue()
+            ];
         }
         return $this->json($data);
     }
 
-    #[Route('/event/{id}', name: 'event_show', methods:['GET'])]
+    #[Route('/events/{id}', name: 'event_show', methods:['GET'])]
 
     public function show(int $id, ManagerRegistry $doctrine): Response
 
@@ -58,13 +58,14 @@ class EventsController extends AbstractController
             'description'=>$event->getDescription(),
             'category'=>$event->getCategory(),
             'tags'=>$event->getTags(),
-            'location'=>$event->getLocation(),
-            'startDate'=>$event->getStartDate(),
-            'endDate'=>$event->getEndDate(),
-            'startTime'=>$event->getStartTime(),
-            'endTime'=>$event->getEndTime(),
+            'startDateTime'=>$event->getStartDateTime(),
+            'endDateTime'=>$event->getEndDateTime(),
             'price'=>$event->getPrice(),
             'image'=>$event->getImage(),
+            'streetname'=>$event->getStreetName(),
+            'city'=>$event->getCity(),
+            'venue'=>$event->getVenue()
+
         ];
         return $this->json($data);
     }
@@ -81,13 +82,13 @@ class EventsController extends AbstractController
         $event->setDescription($request->request->get('description'));
         $event->setCategory($request->request->get('category'));
         $event->setTags($request->request->get('tags'));
-        $event->setLocation($request->request->get('location'));
-        $event->setStartDate($request->request->get('startDate'));
-        $event->setEndDate($request->request->get('endDate'));
-        $event->setStartTime($request->request->get('startTime'));
-        $event->setEndTime($request->request->get('endTime'));
+        $event->setStartDateTime($request->request->get('startDateTime'));
+        $event->setEndDateTime($request->request->get('endDateTime'));
         $event->setPrice($request->request->get('price'));
         $event->setImage($request->request->get('image'));
+        $event->setVenue($request->request->get('venue'));
+        $event->setStreetname($request->request->get('streetname'));
+        $event->setCity($request->request->get('city'));
 
         $em->persist($event);
 
@@ -136,13 +137,13 @@ class EventsController extends AbstractController
         $event->setDescription($content->description);
         $event->setCategory($content->category);
         $event->setTags($content->tags);
-        $event->setLocation($content->location);
-        $event->setStartDate($content->startDate);
-        $event->setEndDate($content->endDate);
-        $event->setStartTime($content->startTime);
-        $event->setEndTime($content->endTime);
+        $event->setVenue($content->venue);
+        $event->setStartDateTime($content->startDateTime);
+        $event->setEndDateTime($content->endDateTime);
         $event->setPrice($content->price);
         $event->setImage($content->image);
+        $event->setStreetname($content->streetname);
+        $event->setCity($content->city);
 
         $em->flush();
 
@@ -152,14 +153,14 @@ class EventsController extends AbstractController
         'organizer' => $event->getOrganizer(),
         'description'=>$event->getDescription(),
         'category'=>$event->getCategory(),
+        'venue'=>$event->getVenue(),
         'tags'=>$event->getTags(),
-        'location'=>$event->getLocation(),
-        'startDate'=>$event->getStartDate(),
-        'endDate'=>$event->getEndDate(),
-        'startTime'=>$event->getStartTime(),
-        'endTime'=>$event->getEndTime(),
+        'startDateTime'=>$event->getStartDateTime(),
+        'endDateTime'=>$event->getEndDateTime(),
         'price'=>$event->getPrice(),
         'image'=>$event->getImage(),
+        'streetname'=>$event->getStreetname(),
+        'city'=>$event->getCity()
         ];
 
         return $this->json($data);

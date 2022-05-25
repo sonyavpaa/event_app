@@ -9,6 +9,7 @@ import EventList from "./components/EventList";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 
+
 const Main = () => {
   return (
     <Router>
