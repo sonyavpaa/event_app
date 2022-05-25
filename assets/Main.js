@@ -8,7 +8,7 @@ import EventShow from "./components/EventShow";
 import EventList from "./components/EventList";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
-
+import CreateEvent from "./Components/CreateEvent";
 
 const Main = () => {
   return (
@@ -17,7 +17,7 @@ const Main = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/event/:id" element={<EventShow />} />
-        {/* <Route path="/createEvent" element={<CreateEvent />} /> */}
+        <Route path="/createEvent" element={<CreateEvent />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
       </Routes>

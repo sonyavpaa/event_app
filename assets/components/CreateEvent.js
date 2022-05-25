@@ -3,12 +3,13 @@ import axios from "axios";
 
 const CreateEvent = () => {
   const [data, setData] = useState({
-    eventname: "",
+    name: "",
     organizer: "",
     description: "",
     category: "",
-    street_address: "",
+    streetname: "",
     city: "",
+    venue: "",
     startDateTime: "",
     endDateTime: "",
     price: "",
@@ -52,8 +53,8 @@ const CreateEvent = () => {
             <input
               className=" d-flex form-control"
               type="text"
-              name="eventname"
-              id="eventname"
+              name="name"
+              id="name"
               onChange={changeData}
               placeholder="Event name"
             />
@@ -102,9 +103,25 @@ const CreateEvent = () => {
               <input
                 className="form-control my-1"
                 type="text"
-                name="street_address"
-                id="street_address"
+                name="venue"
+                id="venue"
+                placeholder="Venue name: e.g. Löyly"
+                onChange={changeData}
+              />
+              <input
+                className="form-control my-1"
+                type="text"
+                name="streetname"
+                id="streetname"
                 placeholder="Street: e.g. Annankatu 1"
+                onChange={changeData}
+              />
+              <input
+                className="form-control my-1"
+                type="text"
+                name="postalcode"
+                id="postalcode"
+                placeholder="Postal Code: e.g 00100"
                 onChange={changeData}
               />
 
