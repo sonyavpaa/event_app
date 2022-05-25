@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
+var stringToHTML = function (str) {
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(str, "text/html");
+  var par = doc.querySelectorAll("p");
+  par.forEach((p) => document.getElementById("eventinfo").appendChild(p));
+};
+
 const EventShow = () => {
   const [id, setId] = useState(useParams().id);
   const [event, setEvent] = useState({
@@ -22,12 +29,12 @@ const EventShow = () => {
         console.log(error);
       });
   }, []);
-
   return (
     <div className="container border mt-5">
       <h2>{event.name.fi}</h2>
       <img src="" alt="" />
-      <p>{event.short_description.fi}</p>
+      <div>{stringToHTML(event.description?.fi)}</div>
+      <div id="eventinfo"></div>
       <p>{event.start_time}</p>
       <p>{event.end_time}</p>
     </div>
