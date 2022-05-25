@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import Home from "./components/Home";
 import Header from "./components/Header";
-import CreateEvent from "./components/CreateEvent";
-import SignUp from "./components/SignUp";
+import Footer from "./components/Footer";
+import EventShow from "./components/EventShow";
+import EventList from "./components/EventList";
 
 const Main = () => {
   return (
@@ -13,14 +13,16 @@ const Main = () => {
       <Header />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/createEvent" element={<CreateEvent />} />
-        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/event/:id" element={<EventShow />} />
+        {/* <Route path="/createEvent" element={<CreateEvent />} /> */}
       </Routes>
+      <Footer />
     </Router>
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("app"));
+
 root.render(
   <React.StrictMode>
     <Main />
