@@ -34,7 +34,8 @@ class EventsController extends AbstractController
             'image'=>$event->getImage(),
             'streetname'=>$event->getStreetName(),
             'city'=>$event->getCity(),
-            'venue'=>$event->getVenue()
+            'venue'=>$event->getVenue(),
+            'postalCode'=>$event->getPostalCode()
             ];
         }
         return $this->json($data);
@@ -64,8 +65,8 @@ class EventsController extends AbstractController
             'image'=>$event->getImage(),
             'streetname'=>$event->getStreetName(),
             'city'=>$event->getCity(),
-            'venue'=>$event->getVenue()
-
+            'venue'=>$event->getVenue(),
+            'postalCode'=>$event->getPostalCode()
         ];
         return $this->json($data);
     }
@@ -89,6 +90,7 @@ class EventsController extends AbstractController
         $event->setVenue($request->request->get('venue'));
         $event->setStreetname($request->request->get('streetname'));
         $event->setCity($request->request->get('city'));
+        $event->setPostalCode($request->request->get('postalCode'));
 
         $em->persist($event);
 
@@ -144,6 +146,7 @@ class EventsController extends AbstractController
         $event->setImage($content->image);
         $event->setStreetname($content->streetname);
         $event->setCity($content->city);
+        $event->setPostalCode($content->postalCode);
 
         $em->flush();
 
@@ -160,7 +163,8 @@ class EventsController extends AbstractController
         'price'=>$event->getPrice(),
         'image'=>$event->getImage(),
         'streetname'=>$event->getStreetname(),
-        'city'=>$event->getCity()
+        'city'=>$event->getCity(),
+        'postalCode'=>$event->getPostalCode()
         ];
 
         return $this->json($data);

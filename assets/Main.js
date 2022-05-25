@@ -8,30 +8,30 @@ import EventShow from "./components/EventShow";
 import EventList from "./components/EventList";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
-
+import CreateEvent from "./components/CreateEvent";
 
 const Main = () => {
-  return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="/event/:id" element={<EventShow />} />
-        {/* <Route path="/createEvent" element={<CreateEvent />} /> */}
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
-      </Routes>
-      <Footer />
-    </Router>
-  );
+    return (
+        <Router>
+            <Header />
+            <Routes>
+                <Route index element={<Home />} />
+                <Route path="/event/:id" element={<EventShow />} />
+                <Route path="/createEvent" element={<CreateEvent />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/login" element={<LogIn />} />
+            </Routes>
+            <Footer />
+        </Router>
+    );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("app"));
 
 root.render(
-  <React.StrictMode>
-    <Main />
-  </React.StrictMode>
+    <React.StrictMode>
+        <Main />
+    </React.StrictMode>
 );
 
 export default Main;
