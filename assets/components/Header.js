@@ -1,14 +1,16 @@
 import React from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light border-bottom">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             eventful
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -19,24 +21,29 @@ const Header = () => {
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
+            <MenuIcon />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Browse events
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/createEvent">
                   Create an event
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link">Login</a>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link">Sign up</a>
+                <Link className="nav-link" to="/signup">
+                  Sign up
+                </Link>
               </li>
             </ul>
             <form className="d-flex" role="search">

@@ -1,11 +1,11 @@
 import React from "react";
 import EventList from "./EventList";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>
       {/* Main jumbotron for a primary marketing message or call to action  */}
-      <div className="jumbotron p-3 mb-5 text-light">
+      <div className="jumbotron p-3 mb-5">
         <div className="container">
           <h1 className="display-3">Now is your time!</h1>
           <p>
@@ -23,7 +23,7 @@ const Home = () => {
       </div>
 
       {/* Cards container  */}
-      <EventList />
+      <EventList dateTimeFormat={props.dateTimeFormat} />
     </div>
   );
 };
