@@ -78,19 +78,21 @@ class EventsController extends AbstractController
 
         $event = new Event();
 
-        $event->setName($request->request->get('name'));
-        $event->setOrganizer($request->request->get('organizer'));
-        $event->setDescription($request->request->get('description'));
-        $event->setCategory($request->request->get('category'));
-        $event->setTags($request->request->get('tags'));
-        $event->setStartDateTime($request->request->get('startDateTime'));
-        $event->setEndDateTime($request->request->get('endDateTime'));
-        $event->setPrice($request->request->get('price'));
-        $event->setImage($request->request->get('image'));
-        $event->setVenue($request->request->get('venue'));
-        $event->setStreetname($request->request->get('streetname'));
-        $event->setCity($request->request->get('city'));
-        $event->setPostalCode($request->request->get('postalCode'));
+        $content = json_decode($request->getContent());
+
+        $event->setName($content->name);
+        $event->setOrganizer($content->organizer);
+        $event->setDescription($content->description);
+        $event->setCategory($content->category);
+        $event->setTags($content->tags);
+        $event->setVenue($content->venue);
+        $event->setStartDateTime($content->startDateTime);
+        $event->setEndDateTime($content->endDateTime);
+        $event->setPrice($content->price);
+        $event->setImage($content->image);
+        $event->setStreetname($content->streetname);
+        $event->setCity($content->city);
+        $event->setPostalCode($content->postalCode);
 
         $em->persist($event);
 
@@ -119,7 +121,6 @@ class EventsController extends AbstractController
     }
 
     #[Route('/events/{id}', name: 'event_edit', methods:['PUT', 'PATCH'])]
-    #TODO: get content to show
 
     public function edit(Request $request, int $id, ManagerRegistry $doctrine): Response
 
@@ -130,9 +131,8 @@ class EventsController extends AbstractController
         if (!$event) {
             return $this->json("No event found for id " . $id, 404);
         }
-
+        
         $content = json_decode($request->getContent());
-        echo $content;
 
         $event->setName($content->name);
         $event->setOrganizer($content->organizer);
@@ -150,9 +150,9 @@ class EventsController extends AbstractController
 
         $em->flush();
 
-        $data[] = [
+        $data = [
         'id'=> $event->getId(),
-        'name' => $event->getName(),
+        'name'=>$event->getName(),
         'organizer' => $event->getOrganizer(),
         'description'=>$event->getDescription(),
         'category'=>$event->getCategory(),
