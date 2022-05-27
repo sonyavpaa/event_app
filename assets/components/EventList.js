@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
-const EventList = () => {
+const EventList = (props) => {
   const [eventList, setEventList] = useState([]);
+  const [localEvents, setLocalEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setLoading(false);
     fetchEventList();
+    fetchLocalEvents();
+    setLoading(false);
   }, []);
 
-  const fetchEventList = () => {
-    axios
+  const fetchLocalEvents = async () => {
+    await axios.get("api/events").then((response) => {
+      console.log(response.data);
+    });
+  };
+
+  //   Fetch data from helsinki api
+  const fetchEventList = async () => {
+    await axios
       .get("http://api.hel.fi/linkedevents/v1/event")
       .then(function (response) {
         console.log(response.data.data); /* an array of object */
@@ -22,6 +32,7 @@ const EventList = () => {
         console.log(error);
       });
   };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -54,7 +65,9 @@ const EventList = () => {
                       ? event?.offers[0]?.price?.en
                       : ""}
                   </p>
-                  <p className="text-danger">{event.start_time}</p>
+                  <p className="text-danger">
+                    {props.dateTimeFormat(event.start_time)}
+                  </p>
                   <Link
                     to={`event/${event.id}`}
                     className="btn btn-primary mx-1"
