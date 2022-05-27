@@ -15,6 +15,7 @@ const CreateEvent = () => {
     price: "",
     image: "",
     postalCode: "",
+    tags: [],
   });
 
   const categories = ["music", "pets", "food"];
@@ -51,12 +52,7 @@ const CreateEvent = () => {
 
     await axios.post("api/events", formData).catch((err) => console.log(err));
 
-    document.querySelector("form").reset();
-
-    const submitMessage = document.createElement("p");
-    submitMessage.innerHTML = "New recipe added!";
-    document.querySelector(".submitMessage").appendChild(submitMessage);
-    console.log(data);
+    await axios.post("api/events", data).catch((err) => console.log(err));
   };
 
   return (
