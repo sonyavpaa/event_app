@@ -7,6 +7,7 @@ const CreateEvent = () => {
     organizer: "",
     description: "",
     category: "",
+    tags: [],
     streetname: "",
     city: "",
     venue: "",
