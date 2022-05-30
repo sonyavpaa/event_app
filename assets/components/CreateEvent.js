@@ -35,24 +35,15 @@ const CreateEvent = () => {
   const submitData = async (e) => {
     e.preventDefault();
 
-    let formData = new FormData();
-
-    formData.append("name", data.name);
-    formData.append("organizer", data.organizer);
-    formData.append("description", data.description);
-    formData.append("category", data.category);
-    formData.append("streetname", data.streetname);
-    formData.append("city", data.city);
-    formData.append("venue", data.venue);
-    formData.append("startDateTime", data.startDateTime);
-    formData.append("endDateTime", data.endDateTime);
-    formData.append("price", data.price);
-    formData.append("image", data.image);
-    formData.append("postalCode", data.postalCode);
-
-    await axios.post("api/events", formData).catch((err) => console.log(err));
-
     await axios.post("api/events", data).catch((err) => console.log(err));
+    document.querySelector("form").reset();
+    const submitMessage = document.createElement("p");
+
+    submitMessage.innerHTML = "New event added!";
+
+    document.querySelector(".submitMessage").appendChild(submitMessage);
+
+    console.log(data);
   };
 
   return (

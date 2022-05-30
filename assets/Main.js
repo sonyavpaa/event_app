@@ -32,9 +32,9 @@ const Main = () => {
     let date = new Date(
       Date.parse(str)
     ).toString(); /* convert date object to string to insert into jsx */
-    console.log(typeof date);
-    console.log(str);
-    console.log(date);
+    // console.log(typeof date);
+    // console.log(str);
+    // console.log(date);
     return date;
   };
 
@@ -51,7 +51,7 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route index element={<Home dateTimeFormat={dateTimeFormat} />} />
         <Route
-          path="/event/:id"
+          path="event/:id"
           element={<EventShow dateTimeFormat={dateTimeFormat} />}
         />
         <Route path="/createEvent" element={<CreateEvent />} />
