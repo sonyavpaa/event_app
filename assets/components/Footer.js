@@ -9,7 +9,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <a href="" className="me-4">
+          <a href="" className="me-4 text-reset">
             <i className="fab fa-facebook-f"></i>
           </a>
           <a href="" className="me-4 text-reset">
