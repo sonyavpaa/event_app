@@ -35,7 +35,7 @@ const CreateEvent = () => {
   const submitData = async (e) => {
     e.preventDefault();
 
-    await axios.post("api/events", data).catch((err) => console.log(err));
+    await axios.post("/api/events", data).catch((err) => console.log(err));
     document.querySelector("form").reset();
     const submitMessage = document.createElement("p");
 
@@ -85,18 +85,20 @@ const CreateEvent = () => {
               />
             </div>
             <div className="category from-group row my-1">
-              <label htmlFor="category" className="col-sm-2 col-form-label">
-                Category
-              </label>
               <div className="col-sm-10">
                 <select
                   className="form-control my-1"
                   name="category"
                   id="category"
                   onChange={changeCategory}
+                  required
+                  defaultValue=""
                 >
+                  <option disabled value="">
+                    Select a category
+                  </option>
                   {categories.map((c) => (
-                    <option className="form-control" key={c}>
+                    <option className="form-control" key={c} value={c}>
                       {c}
                     </option>
                   ))}

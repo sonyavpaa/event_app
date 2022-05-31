@@ -7,6 +7,8 @@ const LogIn = () => {
     password: "",
   });
 
+  const [isLogin, setIsLogin] = useState(true);
+
   const changeData = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
