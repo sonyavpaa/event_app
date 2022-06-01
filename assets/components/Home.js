@@ -23,7 +23,7 @@ const Home = (props) => {
       </div>
 
       {/* Cards container  */}
-      <EventList dateTimeFormat={props.dateTimeFormat} />
+      <EventList />
     </div>
   );
 };
