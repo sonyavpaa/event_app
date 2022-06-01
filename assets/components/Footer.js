@@ -29,7 +29,6 @@ const Footer = () => {
           </a>
         </div>
       </section>
-
       <section className="">
         <div className="container text-center text-md-start mt-5">
           <div className="row mt-3">
@@ -111,7 +110,6 @@ const Footer = () => {
           </div>
         </div>
       </section>
-
       <div
         className="text-center p-4"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}

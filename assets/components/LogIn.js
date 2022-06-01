@@ -15,7 +15,8 @@ const LogIn = () => {
 
   const submitData = (e) => {
     e.preventDefault();
-    console.log(data);
+
+    console.log(token);
   };
 
   return (

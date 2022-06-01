@@ -8,8 +8,31 @@ import EventShow from "./components/EventShow";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 import CreateEvent from "./components/CreateEvent";
+import Edit from "./components/Edit";
+
+// const Main = () => {
+//   return (
+//     <Router>
+//       <Header />
+//       <Routes>
+//         <Route index element={<Home />} />
+//         <Route path="/event/:id" element={<EventShow />} />
+//         <Route path="/createEvent" element={<CreateEvent />} />
+//         <Route path="/signup" element={<SignUp />} />
+//         <Route path="/login" element={<LogIn />} />
+//       </Routes>
+//       <Footer />
+//     </Router>
+//   );
+// import CreateEvent from "./components/CreateEvent";
 
 const Main = () => {
+
+  const [token, setToken] = useState();
+
+  // if (!token) {
+  //   return <LogIn setToken={setToken} />;
+  // }
 
   return (
     <Router>
@@ -21,6 +44,10 @@ const Main = () => {
         <Route
           path="/events/:id"
           element={<EventShow />}
+        />
+        <Route
+          path="/events/:id/edit"
+          element={<Edit dateTimeFormat={dateTimeFormat} />}
         />
         <Route path="/createEvent" element={<CreateEvent />} />
         <Route path="/signup" element={<SignUp />} />

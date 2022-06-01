@@ -102,3 +102,27 @@ form {
 .loginForm button {
   margin: 1em 0 0 0;
 }
+
+.editFrame {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.editFrame form {
+  margin: 0 0 0 2em;
+}
+
+.imageFrame {
+  width: 100%;
+  height: 100%;
+
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.imageFrame img {
+  width: 50%;
+  text-align: center;
+}
