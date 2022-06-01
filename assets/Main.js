@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import EventShow from "./components/EventShow";
-import EventList from "./components/EventList";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 import CreateEvent from "./components/CreateEvent";
@@ -28,14 +27,6 @@ import Edit from "./components/Edit";
 // import CreateEvent from "./components/CreateEvent";
 
 const Main = () => {
-  // format date and time
-  const dateTimeFormat = (str) => {
-    let date = new Date(
-      Date.parse(str)
-    ).toString(); /* convert date object to string to insert into jsx */
-    return date;
-  };
-
   const [token, setToken] = useState();
 
   // if (!token) {
@@ -46,16 +37,11 @@ const Main = () => {
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route index element={<Home dateTimeFormat={dateTimeFormat} />} />
-        <Route
-          path="/events/:id"
-          element={<EventShow dateTimeFormat={dateTimeFormat} />}
-        />
-        <Route
-          path="/events/:id/edit"
-          element={<Edit dateTimeFormat={dateTimeFormat} />}
-        />
+        <Route index element={<Home />} />
+        <Route path="/events/:id" element={<EventShow />} />
+        <Route index element={<Home />} />
+        <Route path="/events/:id" element={<EventShow />} />
+        <Route path="/events/:id/edit" element={<Edit />} />
         <Route path="/createEvent" element={<CreateEvent />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />

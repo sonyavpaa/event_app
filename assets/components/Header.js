@@ -1,8 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Header = () => {
+  const [APIData, setAPIData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState("");
+
+  // fetch events
+
+  useEffect(() => {
+    const fetchLocalEvents = async () => {
+      const response = await axios.get("/api/events");
+      setAPIData(response.data);
+    };
+    fetchLocalEvents();
+  }, []);
+
+  // handle search
+  const handleLiveSearch = (e) => {
+    const searchWord = e.target.value;
+    setSearch(searchWord);
+    const result = APIData.filter((eventItem) => {
+      return eventItem.name.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(result);
+    }
+  };
+
+  // handle clear search input
+  const clearSearchInput = () => {
+    setFilteredData([]);
+    setSearch("");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light border-bottom">
@@ -45,17 +80,41 @@ const Header = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+            <div className="search">
+              <form className="d-flex" role="search">
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search keyword.."
+                  aria-label="Search"
+                  value={search}
+                  onChange={handleLiveSearch}
+                />
+                {search.length == 0 ? (
+                  <button className="btn btn-outline-success" type="submit">
+                    Search
+                  </button>
+                ) : (
+                  <ClearIcon id="clearBtn" onClick={clearSearchInput} />
+                )}
+              </form>
+              {filteredData.length != 0 && (
+                <div className="dataResult">
+                  {filteredData.slice(0, 15).map((event, index) => {
+                    return (
+                      <Link
+                        target="_blank"
+                        key={index}
+                        className="dataItem"
+                        to={`events/${event.id}`}
+                      >
+                        <p>{event.name}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>

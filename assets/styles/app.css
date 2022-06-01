@@ -12,6 +12,9 @@ img {
   max-width: 100%;
 }
 
+.is-hidden {
+  display: none;
+}
 /* Header  */
 .jumbotron {
   background: url("https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170")
@@ -19,6 +22,54 @@ img {
   background-size: cover !important;
 }
 
+.search {
+  position: relative;
+}
+
+.dataResult {
+  position: absolute;
+  margin-top: 5px;
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.dataResult .dataItem {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.dataItem p {
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: lightgray;
+}
+
+#clearBtn {
+  cursor: pointer;
+}
+@media screen and (min-width: 900px) {
+  .eventshow__top > * {
+    flex-basis: 50%;
+  }
+
+  .eventshow__top .eventshow__content {
+    padding-inline-start: 5rem;
+  }
+}
+
+/* Create event form  */
 .formFrame {
   width: 100%;
   display: flex;
