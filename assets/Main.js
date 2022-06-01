@@ -27,12 +27,6 @@ import Edit from "./components/Edit";
 // import CreateEvent from "./components/CreateEvent";
 
 const Main = () => {
-  const [token, setToken] = useState();
-
-  // if (!token) {
-  //   return <LogIn setToken={setToken} />;
-  // }
-
   return (
     <Router>
       <Header />

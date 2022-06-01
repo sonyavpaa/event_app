@@ -21,7 +21,6 @@ const EventList = (props) => {
       setFilteredData(response.data);
       setLoading(false);
     };
-
     fetchLocalEvents();
   }, []);
 
