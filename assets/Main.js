@@ -27,13 +27,6 @@ import Edit from "./components/Edit";
 // import CreateEvent from "./components/CreateEvent";
 
 const Main = () => {
-
-  const [token, setToken] = useState();
-
-  // if (!token) {
-  //   return <LogIn setToken={setToken} />;
-  // }
-
   return (
     <Router>
       <Header />
@@ -41,14 +34,7 @@ const Main = () => {
         <Route index element={<Home />} />
         <Route path="/events/:id" element={<EventShow />} />
         <Route index element={<Home />} />
-        <Route
-          path="/events/:id"
-          element={<EventShow />}
-        />
-        <Route
-          path="/events/:id/edit"
-          element={<Edit dateTimeFormat={dateTimeFormat} />}
-        />
+        <Route path="/events/:id" element={<EventShow />} />
         <Route path="/createEvent" element={<CreateEvent />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
