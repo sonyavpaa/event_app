@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../styles/CreateEvent.module.css";
+let tags = [];
 
 const CreateEvent = () => {
   const [data, setData] = useState({
@@ -18,6 +20,61 @@ const CreateEvent = () => {
     tags: [],
   });
 
+  // ****** ADDING TAGS ******
+
+  const addTag = async (e) => {
+    // removing unwanted spaces from user tag
+    let tagArr = e.target.value.replace(/\s+/g, " ");
+    if (tagArr.length > 1) {
+      if (e.key === ",")
+        tagArr.split(",").forEach((tag) => {
+          // makes sure no dublicates are imported
+          if (!tags.includes(tag) && tag.length > 1) {
+            tags.push(tag);
+            createTag(tag);
+            setData({ ...data, tags });
+            e.target.value = "";
+          }
+        });
+    }
+  };
+  // creates single tag elements from the tag array
+  const liTagArr = [];
+  const createTag = () => {
+    // empties the tagBox so there will be no dublicates
+    const tagBox = document.querySelector(".tagBox");
+    tagBox.querySelectorAll("li").forEach((li) => li.remove());
+    // reverses the tags array so that the latest tag will be last one in the tagBox
+    tags
+      .slice()
+      .reverse()
+      .forEach((tag) => {
+        let liTag = document.createElement("li");
+        // adds tag inside the newly created li and creates the remove span icon inside li
+        liTag.innerHTML = `${tag}<span>x</span>`;
+        // adds event listener for the remove span icon
+        liTag.children[0].addEventListener("click", (event) => {
+          // removes the tag from the tags array and from DOM
+          let index = tags.indexOf(tag);
+          if (index !== -1) {
+            tags.splice(index, 1);
+            event.target.parentNode.remove();
+          }
+        });
+        // adds the li element to tagBox
+        tagBox.prepend(liTag);
+      });
+  };
+
+  // gets rids of the comma in the input field after adding the tag
+  const checkComma = (e) => {
+    if (e.target.value === ",") {
+      e.target.value = "";
+    }
+  };
+
+  // ******************
+
   const categories = ["music", "pets", "food"];
 
   const changeData = (e) => {
@@ -34,25 +91,28 @@ const CreateEvent = () => {
 
   const submitData = async (e) => {
     e.preventDefault();
+    // empties the tags array and the DOM from tags
+    tags = [];
+    const tagBox = document.querySelector(".tagBox");
+    tagBox.querySelectorAll("li").forEach((li) => li.remove());
 
     await axios.post("/api/events", data).catch((err) => console.log(err));
-    document.querySelector("form").reset();
-    const submitMessage = document.createElement("p");
+    document.querySelector(".createForm").reset();
 
+    const submitMessage = document.createElement("p");
     submitMessage.innerHTML = "New event added!";
 
     document.querySelector(".submitMessage").appendChild(submitMessage);
-
-    console.log(data);
   };
 
   return (
     <>
       <div className="formFrame">
         <h2>Create Event</h2>
+
         <div className="submitMessage"></div>
 
-        <form onSubmit={submitData}>
+        <form className="createForm" onSubmit={submitData}>
           <div>
             <div className="d-flex form-group my-1">
               <input
@@ -84,8 +144,28 @@ const CreateEvent = () => {
                 placeholder="Description"
               />
             </div>
+            <div className="form-group my-1 wrapper">
+              <label htmlFor="tags">Tags</label>
+              <div className="content">
+                <p>Enter a comma after each tag</p>
+
+                <ul className="tagBox">
+                  <input
+                    type="text"
+                    id="tags"
+                    onKeyDown={addTag}
+                    onKeyUp={checkComma}
+                  />
+                </ul>
+              </div>
+              <div className="details"></div>
+              <p>
+                <span>10</span> tags are remaining
+              </p>
+              <button className="button form-control">Remove all tags</button>
+            </div>
             <div className="category from-group row my-1">
-              <div className="col-sm-10">
+              <div className="col-sm-20">
                 <select
                   className="form-control my-1"
                   name="category"

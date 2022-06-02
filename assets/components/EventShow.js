@@ -83,7 +83,13 @@ const EventShow = (props) => {
         <div className="d-flex align-items-center justify-content-between flex-wrap eventshow__top">
           <div className="eventshow__img">
             {" "}
-            <img src={event?.image} alt="image name" />
+            <img
+              src={
+                event?.image ||
+                "https://images.unsplash.com/photo-1472653431158-6364773b2a56?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469"
+              }
+              alt="image name"
+            />
           </div>
 
           <div className="eventshow__content">
@@ -111,10 +117,20 @@ const EventShow = (props) => {
         <hr />
         <div>
           <h3>About this event</h3>
-          <p>{event.description}</p>
+          <p className="eventDescription">{event.description}</p>
         </div>
         <p>More info here:</p>
         <h3>Tags: </h3>
+        {console.log(event?.tags)}
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          {event?.tags?.map((tag) => {
+            return (
+              <a href="/" key={tag} style={{ margin: "1em" }}>
+                {tag}
+              </a>
+            );
+          })}
+        </div>
         <h3>Share with friends</h3>
         <div>
           <a

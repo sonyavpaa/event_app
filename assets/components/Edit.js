@@ -92,7 +92,8 @@ const Edit = (props) => {
               name="image"
               id="image"
               onChange={changeData}
-              placeholder={"Event image url: " + event.image}
+              defaultValue={event?.image}
+              placeholder="Add image url"
             />
             <div className="d-flex form-group my-1">
               <input
@@ -101,7 +102,8 @@ const Edit = (props) => {
                 name="name"
                 id="name"
                 onChange={changeData}
-                placeholder={"Event name: " + event?.name}
+                defaultValue={event?.name}
+                placeholder="Event name"
               />
             </div>
             <div className="form-group my-1">
@@ -111,7 +113,8 @@ const Edit = (props) => {
                 name="organizer"
                 id="organizer"
                 onChange={changeData}
-                placeholder={"Event organizer: " + event?.organizer}
+                defaultValue={event?.organizer}
+                placeholder="Organizer"
               />
             </div>
             <div>
@@ -121,7 +124,8 @@ const Edit = (props) => {
                 name="price"
                 id="price"
                 onChange={changeData}
-                placeholder={"Event price: " + event?.price}
+                defaultValue={event?.price}
+                placeholder="Price"
               />
             </div>
 
@@ -168,15 +172,17 @@ const Edit = (props) => {
                 type="text"
                 name="venue"
                 id="venue"
-                placeholder={"Venue: " + event.venue}
+                defaultValue={event.venue}
                 onChange={changeData}
+                placeholder="Venue name"
               />
               <input
                 className="form-control my-1"
                 type="text"
                 name="streetname"
                 id="streetname"
-                placeholder={"Street: " + event.streetname}
+                defaultValue={event.streetname}
+                placeholder="Street name and number"
                 onChange={changeData}
               />
               <input
@@ -184,16 +190,18 @@ const Edit = (props) => {
                 type="text"
                 name="postalcode"
                 id="postalcode"
-                placeholder={"Postal Code: " + event.postalCode}
+                defaultValue={event.postalCode}
                 onChange={changeData}
+                placeholder="Postal Code"
               />
               <input
                 className="form-control my-1"
                 type="text"
                 name="city"
                 id="city"
-                placeholder={"City: " + event.city}
+                defaultValue={event.city}
                 onChange={changeData}
+                placeholder="City"
               />
             </div>
           </div>
@@ -207,7 +215,8 @@ const Edit = (props) => {
             id="description"
             rows="10"
             onChange={changeData}
-            placeholder={event.description}
+            defaultValue={event.description}
+            placeholder="Description"
           />
           <div
             className="category from-group row my-1"

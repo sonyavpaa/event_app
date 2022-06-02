@@ -69,12 +69,8 @@ a:hover {
   }
 }
 
-/* Create event form  */
-.formFrame {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.eventDescription {
+  white-space: pre-wrap;
 }
 
 form {
@@ -98,6 +94,18 @@ form {
   margin: 1em 0 0 0;
 }
 
+.loginForm,
+.signupForm {
+  width: 20%;
+}
+
+@media only screen and (min-width: 390px) and (max-width: 1281px) {
+  .loginForm,
+  .signupForm {
+    width: 80%;
+  }
+}
+
 .loginForm input,
 .loginForm button {
   margin: 1em 0 0 0;
@@ -106,6 +114,13 @@ form {
 .editFrame {
   display: flex;
   flex-direction: row-reverse;
+}
+
+@media only screen and (min-width: 390px) and (max-width: 1281px) {
+  .editFrame {
+    margin: 1em 0 0 0;
+    flex-direction: column;
+  }
 }
 
 .editFrame form {
