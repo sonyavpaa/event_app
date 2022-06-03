@@ -93,6 +93,7 @@ const Edit = (props) => {
               id="image"
               onChange={changeData}
               placeholder={"Event image url: " + event.image}
+              defaultValue={event.image}
             />
             <div className="d-flex form-group my-1">
               <input
@@ -102,6 +103,7 @@ const Edit = (props) => {
                 id="name"
                 onChange={changeData}
                 placeholder={"Event name: " + event?.name}
+                defaultValue={event.name}
               />
             </div>
             <div className="form-group my-1">
