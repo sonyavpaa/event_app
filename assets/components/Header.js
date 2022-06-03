@@ -42,7 +42,8 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-light border-bottom">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand d-inline-block px-2" to="/">
+            <i className="fas fa-gem me-1"></i>
             eventful
           </Link>
           <button

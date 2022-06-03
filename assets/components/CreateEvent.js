@@ -27,15 +27,17 @@ const CreateEvent = () => {
     let tagArr = e.target.value.replace(/\s+/g, " ");
     if (tagArr.length > 1) {
       if (e.key === ",")
-        tagArr.split(",").forEach((tag) => {
-          // makes sure no dublicates are imported
-          if (!tags.includes(tag) && tag.length > 1) {
-            tags.push(tag);
-            createTag(tag);
-            setData({ ...data, tags });
-            e.target.value = "";
-          }
-        });
+        if (tags.length < maxTags) {
+          tagArr.split(",").forEach((tag) => {
+            // makes sure no dublicates are imported
+            if (!tags.includes(tag) && tag.length > 1) {
+              tags.push(tag);
+              createTag(tag);
+              setData({ ...data, tags });
+              e.target.value = "";
+            }
+          });
+        }
     }
   };
   // creates single tag elements from the tag array
@@ -60,9 +62,11 @@ const CreateEvent = () => {
             tags.splice(index, 1);
             event.target.parentNode.remove();
           }
+          countTag();
         });
         // adds the li element to tagBox
         tagBox.prepend(liTag);
+        countTag();
       });
   };
 
@@ -71,6 +75,20 @@ const CreateEvent = () => {
     if (e.target.value === ",") {
       e.target.value = "";
     }
+  };
+
+  let maxTags = 5;
+  const countTag = () => {
+    const span = document.querySelector(".tagSpan");
+    span.innerText = maxTags - tags.length;
+  };
+
+  const emptyTags = (e) => {
+    console.log(e);
+    tags = [];
+    const tagBox = document.querySelector(".tagBox");
+    tagBox.querySelectorAll("li").forEach((li) => li.remove());
+    countTag();
   };
 
   // ******************
@@ -92,9 +110,7 @@ const CreateEvent = () => {
   const submitData = async (e) => {
     e.preventDefault();
     // empties the tags array and the DOM from tags
-    tags = [];
-    const tagBox = document.querySelector(".tagBox");
-    tagBox.querySelectorAll("li").forEach((li) => li.remove());
+    emptyTags();
 
     await axios.post("/api/events", data).catch((err) => console.log(err));
     document.querySelector(".createForm").reset();
@@ -144,25 +160,31 @@ const CreateEvent = () => {
                 placeholder="Description"
               />
             </div>
-            <div className="form-group my-1 wrapper">
+            <div className="my-1 wrapper form-control">
               <label htmlFor="tags">Tags</label>
               <div className="content">
-                <p>Enter a comma after each tag</p>
-
                 <ul className="tagBox">
                   <input
                     type="text"
                     id="tags"
                     onKeyDown={addTag}
                     onKeyUp={checkComma}
+                    placeholder="Enter comma after each tag"
                   />
                 </ul>
               </div>
-              <div className="details"></div>
-              <p>
-                <span>10</span> tags are remaining
-              </p>
-              <button className="button form-control">Remove all tags</button>
+              <div className="details">
+                <p className="tagPar my-2">
+                  <span className="tagSpan">{maxTags}</span> tags are remaining
+                </p>
+                <button
+                  className="button form-control row my-1 mx-0"
+                  onClick={(e) => emptyTags(e)}
+                  style={{ width: "80%", alignSelf: "flex-end" }}
+                >
+                  Remove all tags
+                </button>
+              </div>
             </div>
             <div className="category from-group row my-1">
               <div className="col-sm-20">

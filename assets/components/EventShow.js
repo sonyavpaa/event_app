@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
-
-var parser = new DOMParser();
+import Map from "./Map";
 
 const EventShow = (props) => {
   const [id, setId] = useState(useParams().id);
   const [event, setEvent] = useState({});
-  const [location, setLocation] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [description, setDescription] = useState([]);
+
   const link =
     "https://www.bc.fi/koulutukset/koodaajakoulutus-tieto-ja-viestintatekniikan-perustutkinnon-osat/";
 
@@ -46,11 +44,26 @@ const EventShow = (props) => {
 
   // format date and time
   const dateTimeFormat = (dateString) => {
-    let date = new Date(
-      dateString
-    ).toString(); /* convert date object to string to insert into jsx */
-    return date;
+    let dayOfWeek = new Date(dateString).toDateString().slice(0, 4);
+
+    let time = new Date(dateString)
+      .toLocaleTimeString()
+      .slice(0, 5)
+      .replaceAll(".", ":");
+    let date = new Date(dateString).toLocaleDateString().replaceAll("/", ".");
+    // shorten timezone
+    let timeZone = new Date(dateString)
+      .toLocaleDateString("en-FI", {
+        day: "2-digit",
+        timeZoneName: "short",
+      })
+      .slice(4);
+
+    let fulldate =
+      time + " " + dayOfWeek + "" + date + " " + "(" + timeZone + ")";
+    return fulldate;
   };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -109,8 +122,9 @@ const EventShow = (props) => {
               <LocationOnIcon />
               Location
             </h3>
+            {event?.venue && <p>{event?.venue}</p>}
             {event?.streetname && <p>{event?.streetname}</p>}
-            {event?.postal_code && <p>{event?.postal_code}</p>}
+            {event?.postalCode && <p>{event?.postalCode}</p>}
             <p>{event?.city}</p>
           </div>
         </div>
@@ -151,6 +165,13 @@ const EventShow = (props) => {
           </a>
         </div>
       </div>
+      <Map
+        id="map"
+        event={event ? event : ""}
+        streetname={event?.streetname ? event?.streetname : ""}
+        postalCode={event?.postalCode ? event?.postalCode : ""}
+        city={event?.city ? event?.city : ""}
+      />
     </div>
   );
 };

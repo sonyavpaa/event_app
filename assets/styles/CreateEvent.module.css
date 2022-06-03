@@ -13,12 +13,15 @@ form {
 }
 
 .wrapper {
-  border: 1px solid blue;
   padding: 1em;
 }
 
+.wrapper label {
+  margin-bottom: 1em;
+}
+
 .content {
-  border: 1px solid green;
+  border: none;
 }
 
 .content ul {
@@ -33,7 +36,7 @@ form {
   list-style: none;
   display: flex;
   flex-direction: row;
-  background: #f2f2f2;
+  background: #fea8a8;
   padding: 0.5em;
   border-radius: 0.3em;
   margin: 0 0.5em 0 0;
@@ -49,7 +52,8 @@ form {
   line-height: 1.5em;
   margin-left: 0.7em;
   border-radius: 50%;
-  border: 1px solid salmon;
+  border: 1px solid white;
+  color: white;
 }
 
 .content ul input {
@@ -58,6 +62,7 @@ form {
   outline: none;
   padding: 5px;
   font-size: 1em;
+  border: none;
 }
 
 .wrapper .details {

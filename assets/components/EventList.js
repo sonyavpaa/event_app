@@ -17,8 +17,19 @@ const EventList = (props) => {
     const fetchLocalEvents = async () => {
       setLoading(true);
       const response = await axios.get("/api/events");
-      setAPIData(response.data);
-      setFilteredData(response.data);
+      // filter out past events
+      const validEvents = response?.data
+
+        .filter(
+          (event) => Date.parse(event?.startDateTime) >= Date.parse(new Date())
+        )
+
+        .sort(function (a, b) {
+          return new Date(a.startDateTime) - new Date(b.startDateTime);
+        });
+
+      setAPIData(validEvents);
+      setFilteredData(validEvents);
       setLoading(false);
     };
     fetchLocalEvents();
@@ -28,6 +39,37 @@ const EventList = (props) => {
   const categoryItems = [...new Set(APIData.map((event) => event.category))];
 
   // Date time format
+
+  const dateTimeFormat = (dateString) => {
+    // get day of the week (Mon)
+
+    let dayOfWeek = new Date(dateString).toDateString().slice(0, 4);
+
+    // get time(12:00)
+    let time = new Date(dateString)
+      .toLocaleTimeString()
+      .slice(0, 5)
+      .replaceAll(".", ":");
+
+    // get date (06.06.2022)
+    let date = new Date(dateString).toLocaleDateString().replaceAll("/", ".");
+
+    // shorten timezone (EEST)
+    let timeZone = new Date(dateString)
+      .toLocaleDateString("en-FI", {
+        day: "2-digit",
+        timeZoneName: "short",
+      })
+      .slice(4);
+
+    //combine all together
+    let fulldate =
+      dayOfWeek + "" + time + " " + date + " " + "(" + timeZone + ")";
+
+    return fulldate;
+  };
+
+  // show today/tomorrow/date
   const findDay = (dateString) => {
     let eventDate = new Date(dateString);
     let currentDate = new Date();
@@ -38,9 +80,7 @@ const EventList = (props) => {
     } else if (diffDays == 1) {
       return "Tomorrow";
     } else {
-      return new Date(
-        dateString
-      ).toString(); /* convert date object to string to insert into jsx */
+      return dateTimeFormat(dateString);
     }
   };
 
@@ -120,8 +160,6 @@ const EventList = (props) => {
         <button
           type="button"
           className="btn btn-outline-primary mx-1 my-1"
-          variant="outlined"
-          size="small"
           onClick={() => setFilteredData(APIData)}
         >
           All
@@ -161,9 +199,10 @@ const EventList = (props) => {
         {filteredData.map((event) => {
           return (
             <div key={event.id} className="col">
-              <div className="card shadow-sm">
+              <div className="card shadow-sm h-100">
                 <img
                   className="card-img-top"
+                  style={{ width: "100%", height: "225px", objectFit: "cover" }}
                   src={
                     event?.image ||
                     "https://images.unsplash.com/photo-1472653431158-6364773b2a56?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469"
@@ -172,9 +211,8 @@ const EventList = (props) => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{event.name}</h5>
-
                   <p>{event?.price}</p>
-                  <p className="text-danger">{findDay(event.startDateTime)}</p>
+                  <p className="text-danger">{findDay(event?.startDateTime)}</p>
                   <Link
                     to={`events/${event.id}`}
                     className="btn btn-primary mx-1"
@@ -200,11 +238,11 @@ const EventList = (props) => {
                   />
                   <div className="card-body">
                     <h5 className="card-title">{event.name}</h5>
-
                     <p>{event?.price}</p>
                     <p className="text-danger">
                       {dateTimeFormat(event.startDateTime)}
                     </p>
+                    <p>{event?.venue}</p>
                     <Link
                       to={`events/${event.id}`}
                       className="btn btn-primary mx-1"
