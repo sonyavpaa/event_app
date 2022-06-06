@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
 const Footer = () => {
   return (
@@ -96,7 +96,8 @@ const Footer = () => {
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Connect with us</h6>
               <p>
-                <i className="fas fa-home me-3"></i> New York, NY 10012, US
+                <i className="fas fa-home me-3"></i> Helsinki Business College,
+                Finland
               </p>
               <p>
                 <i className="fas fa-envelope me-3"></i>
@@ -117,7 +118,11 @@ const Footer = () => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
         © 2022 EventFul
-        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
+        <a
+          className="text-reset fw-bold"
+          target="_blank"
+          href="https://www.bc.fi/?gclid=Cj0KCQjw4uaUBhC8ARIsANUuDjVR5k8-ps47V5qn8uZA0H6dNy6AcRSofQNjGx8aLlODBSNBXCm6jE4aAl2iEALw_wcB"
+        >
           BCH
         </a>
       </div>

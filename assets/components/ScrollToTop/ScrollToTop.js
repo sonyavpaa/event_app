@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import styles from "./ScrollToTop.module.css";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import "./ScrollToTop.css";
 
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > 200) {
         setShowTopBtn(true);
       } else {
         setShowTopBtn(false);
@@ -22,13 +23,15 @@ const ScrollToTop = () => {
   return (
     <>
       {showTopBtn && (
-        <button
-          type="button"
-          className="btn btn-primary position-fixed"
+        <div
           onClick={goToTop}
+          className="ScrollToTop btn btn-outline-primary d-flex py-0 px-1"
         >
-          To top
-        </button>
+          <span>
+            <KeyboardArrowUpIcon />
+          </span>
+          <span>Top</span>
+        </div>
       )}
     </>
   );

@@ -126,6 +126,7 @@ const Edit = (props) => {
                 id="organizer"
                 onChange={changeData}
                 placeholder={"Event organizer: " + event?.organizer}
+                defaultValue={event.organizer}
               />
             </div>
             <div>
@@ -136,6 +137,7 @@ const Edit = (props) => {
                 id="price"
                 onChange={changeData}
                 placeholder={"Event price: " + event?.price}
+                defaultValue={event.price}
               />
             </div>
 
@@ -184,6 +186,7 @@ const Edit = (props) => {
                 id="venue"
                 placeholder={"Venue: " + event.venue}
                 onChange={changeData}
+                defaultValue={event.venue}
               />
               <input
                 className="form-control my-1"
@@ -192,6 +195,7 @@ const Edit = (props) => {
                 id="streetname"
                 placeholder={"Street: " + event.streetname}
                 onChange={changeData}
+                defaultValue={event.streetname}
               />
               <input
                 className="form-control my-1"
@@ -200,6 +204,7 @@ const Edit = (props) => {
                 id="postalcode"
                 placeholder={"Postal Code: " + event.postalCode}
                 onChange={changeData}
+                defaultValue={event.postalCode}
               />
               <input
                 className="form-control my-1"
@@ -208,6 +213,7 @@ const Edit = (props) => {
                 id="city"
                 placeholder={"City: " + event.city}
                 onChange={changeData}
+                defaultValue={event.city}
               />
             </div>
           </div>
@@ -222,6 +228,7 @@ const Edit = (props) => {
             rows="10"
             onChange={changeData}
             placeholder={event.description}
+            defaultValue={event.description}
           />
           <div
             className="category from-group row my-1"
@@ -242,6 +249,7 @@ const Edit = (props) => {
                     selected={c === event.category ? "selected" : null}
                     className="form-control"
                     key={c}
+                    defaultValue={c}
                   >
                     {c}
                   </option>
