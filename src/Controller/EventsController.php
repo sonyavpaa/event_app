@@ -73,7 +73,13 @@ class EventsController extends AbstractController
     
     #[Route('/events', name: 'event_new', methods:['POST'])]
     public function new(Request $request, ManagerRegistry $doctrine): Response
-    {
+    {   
+        $token = $request->headers->get('Authorization');
+        $tokenWithoutBearer = explode(" ", $token);
+        $tokenParts = explode(".", $tokenWithoutBearer[1]); 
+        $tokenPayload = base64_decode($tokenParts[1]);
+        $jwtPayload = json_decode($tokenPayload); 
+
         $em = $doctrine->getManager();
 
         $event = new Event();
@@ -93,6 +99,7 @@ class EventsController extends AbstractController
         $event->setStreetname($content->streetname);
         $event->setCity($content->city);
         $event->setPostalCode($content->postalCode);
+        $event->setUserId($jwtPayload->email);
 
         $em->persist($event);
 

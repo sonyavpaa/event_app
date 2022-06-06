@@ -51,7 +51,19 @@ const Edit = (props) => {
   const submitData = async (e) => {
     e.preventDefault();
 
-    await axios.put("/api/events/" + id, data).catch((err) => console.log(err));
+    const token = JSON.parse(
+      window.localStorage.getItem("loggedInUserToken")
+    ).token;
+
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    console.log(config);
+
+    try {
+      const response = await axios.put(`/api/events/${id}`, data, config);
+    } catch (error) {
+      console.log(error);
+    }
+
     document.querySelector("form").reset();
     const submitMessage = document.createElement("p");
 
