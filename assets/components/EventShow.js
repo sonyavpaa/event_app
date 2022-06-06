@@ -24,7 +24,19 @@ const EventShow = (props) => {
   }, []);
 
   const deleteEvent = async () => {
-    await axios.delete("/api/events/" + id).catch((err) => console.log(err));
+    const token = JSON.parse(
+      window.localStorage.getItem("loggedInUserToken")
+    ).token;
+
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    console.log(config);
+
+    try {
+      const response = await axios.delete(`/api/events/${id}`, config);
+    } catch (error) {
+      console.log(error);
+    }
+
     window.location.href = "/";
   };
 
@@ -135,7 +147,7 @@ const EventShow = (props) => {
         </div>
         <p>More info here:</p>
         <h3>Tags: </h3>
-        {console.log(event?.tags)}
+
         <div style={{ display: "flex", flexDirection: "row" }}>
           {event?.tags?.map((tag) => {
             return (

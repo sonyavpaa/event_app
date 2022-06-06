@@ -85,7 +85,6 @@ const CreateEvent = () => {
   };
 
   const emptyTags = (e) => {
-    console.log(e);
     tags = [];
     const tagBox = document.querySelector(".tagBox");
     tagBox.querySelectorAll("li").forEach((li) => li.remove());
@@ -118,7 +117,6 @@ const CreateEvent = () => {
     ).token;
 
     const config = { headers: { Authorization: `Bearer ${token}` } };
-    console.log(config);
 
     try {
       const response = await axios.post("/api/events", data, config);
@@ -226,43 +224,34 @@ const CreateEvent = () => {
                 </select>
               </div>
             </div>
-            <div>
-              <div className="locationFrame">
-                <input
-                  className="form-control my-1"
-                  type="text"
-                  name="venue"
-                  id="venue"
-                  placeholder="Venue name: e.g. Löyly"
-                  onChange={changeData}
-                />
-                <input
-                  className="form-control my-1"
-                  type="text"
-                  name="streetname"
-                  id="streetname"
-                  placeholder="Street: e.g. Annankatu 1"
-                  onChange={changeData}
-                />
-                <input
-                  className="form-control my-1"
-                  type="text"
-                  name="postalcode"
-                  id="postalcode"
-                  placeholder="Postal Code: e.g 00100"
-                  onChange={changeData}
-                />
 
-                <input
-                  className="form-control my-1"
-                  type="text"
-                  name="city"
-                  id="city"
-                  placeholder="City: e.g. Helsinki"
-                  onChange={changeData}
-                />
-              </div>
+            <div className="locationFrame">
+              <input
+                className="form-control my-1"
+                type="text"
+                name="venue"
+                id="venue"
+                placeholder="Venue name: e.g. Löyly"
+                onChange={changeData}
+              />
+              <input
+                className="form-control my-1"
+                type="text"
+                name="streetname"
+                id="streetname"
+                placeholder="Street: e.g. Annankatu 1"
+                onChange={changeData}
+              />
+              <input
+                className="form-control my-1"
+                type="text"
+                name="postalcode"
+                id="postalcode"
+                placeholder="Postal Code: e.g 00100"
+                onChange={changeData}
+              />
             </div>
+
             <div className="form-group  my-3">
               <label htmlFor="startDateTime" className="form-control">
                 Start date and time
