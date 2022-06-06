@@ -19,13 +19,16 @@ const EventList = (props) => {
       const response = await axios.get("/api/events");
       console.log(response.data);
       // filter out past events
-      const validEvents = response.data
+      const validEvents = response?.data
+
         .filter(
           (event) => Date.parse(event.endDateTime) >= Date.parse(new Date())
         )
+
         .sort(function (a, b) {
           return new Date(a.startDateTime) - new Date(b.startDateTime);
         });
+
       setAPIData(validEvents);
       setFilteredData(validEvents);
       setLoading(false);
@@ -40,6 +43,7 @@ const EventList = (props) => {
 
   const dateTimeFormat = (dateString) => {
     // get day of the week (Mon)
+
     let dayOfWeek = new Date(dateString).toDateString().slice(0, 4);
 
     // get time(12:00)
@@ -62,6 +66,7 @@ const EventList = (props) => {
     //combine all together
     let fulldate =
       dayOfWeek + "" + time + " " + date + " " + "(" + timeZone + ")";
+
     return fulldate;
   };
 
