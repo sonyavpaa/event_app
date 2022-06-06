@@ -32,9 +32,9 @@ const EventShow = (props) => {
     console.log(config);
 
     try {
-      const response = await axios.delete(`/api/events/${id}`, config);
+      await axios.delete(`/api/events/${id}`, config);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     window.location.href = "/";
@@ -57,7 +57,6 @@ const EventShow = (props) => {
   // format date and time
   const dateTimeFormat = (dateString) => {
     let dayOfWeek = new Date(dateString).toDateString().slice(0, 4);
-
     let time = new Date(dateString)
       .toLocaleTimeString()
       .slice(0, 5)
@@ -96,12 +95,13 @@ const EventShow = (props) => {
           >
             Edit event
           </Link>
-          <input
+          <button
             className="btn btn-primary mx-1"
-            type="button"
-            value="Delete event"
             onClick={deleteEvent}
-          />
+            type="button"
+          >
+            Delete event
+          </button>
         </div>
       </div>
       <div className="container px-3 mt-5">
