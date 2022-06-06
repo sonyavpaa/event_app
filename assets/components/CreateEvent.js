@@ -52,6 +52,7 @@ const CreateEvent = () => {
       .reverse()
       .forEach((tag) => {
         let liTag = document.createElement("li");
+
         // adds tag inside the newly created li and creates the remove span icon inside li
         liTag.innerHTML = `${tag}<span>x</span>`;
         // adds event listener for the remove span icon
@@ -112,7 +113,25 @@ const CreateEvent = () => {
     // empties the tags array and the DOM from tags
     emptyTags();
 
-    await axios.post("/api/events", data).catch((err) => console.log(err));
+    const token = JSON.parse(
+      window.localStorage.getItem("loggedInUserToken")
+    ).token;
+
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    console.log(config);
+
+    try {
+      const response = await axios.post("/api/events", data, config);
+
+      document.querySelector("form").reset();
+      const submitMessage = document.createElement("p");
+
+      submitMessage.innerHTML = "New event added!";
+
+      document.querySelector(".submitMessage").appendChild(submitMessage);
+    } catch (error) {
+      console.error(error);
+    }
     document.querySelector(".createForm").reset();
 
     const submitMessage = document.createElement("p");

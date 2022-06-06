@@ -36,11 +36,12 @@ form {
   list-style: none;
   display: flex;
   flex-direction: row;
-  background: #fea8a8;
+  background: #0d6efd;
+  color: white;
   padding: 0.5em;
   border-radius: 0.3em;
   margin: 0 0.5em 0 0;
-  border: 1px solid #e3d1e1;
+  border: none;
 }
 
 .content ul li span {

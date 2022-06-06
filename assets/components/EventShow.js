@@ -139,7 +139,12 @@ const EventShow = (props) => {
         <div style={{ display: "flex", flexDirection: "row" }}>
           {event?.tags?.map((tag) => {
             return (
-              <a href="/" key={tag} style={{ margin: "1em" }}>
+              <a
+                className="btn btn-outline-primary mx-1 my-1"
+                href="/"
+                key={tag}
+                style={{ margin: "1em" }}
+              >
                 {tag}
               </a>
             );

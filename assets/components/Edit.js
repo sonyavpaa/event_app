@@ -249,6 +249,7 @@ const Edit = (props) => {
                     selected={c === event.category ? "selected" : null}
                     className="form-control"
                     key={c}
+                    defaultValue={c}
                   >
                     {c}
                   </option>
