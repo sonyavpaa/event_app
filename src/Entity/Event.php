@@ -52,6 +52,9 @@ class Event
     #[ORM\Column(type: 'string', length: 255)]
     private $postalCode;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $userId;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -209,6 +212,18 @@ class Event
     public function setPostalCode(string $postalCode): self
     {
         $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(string $userId): self
+    {
+        $this->userId = $userId;
 
         return $this;
     }
