@@ -2,13 +2,11 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
-const LogIn = () => {
+const LogIn = ({ loggedInUser, setLoggedInUser }) => {
     const [data, setData] = useState({
         email: "",
         password: "",
     });
-
-    const [isLogin, setIsLogin] = useState(true);
 
     const changeData = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -26,6 +24,7 @@ const LogIn = () => {
         } catch (error) {
             console.error(error.message);
         }
+        setLoggedInUser({ userId: data.email });
     };
 
     return (
