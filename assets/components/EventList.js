@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ClearIcon from "@mui/icons-material/Clear";
+import { number } from "prop-types";
 
 const EventList = (props) => {
   // States
@@ -17,7 +18,7 @@ const EventList = (props) => {
     const fetchLocalEvents = async () => {
       setLoading(true);
       const response = await axios.get("/api/events");
-      console.log(response.data);
+
       // filter out past events
       const validEvents = response?.data
 
@@ -75,10 +76,12 @@ const EventList = (props) => {
     let eventDate = new Date(dateString);
     let currentDate = new Date();
     const timeDiff = eventDate.getTime() - currentDate.getTime();
-    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    if (diffDays == 0) {
+    let diffDays = number;
+    diffDays = Math.round(timeDiff / (1000 * 3600 * 24));
+
+    if (diffDays < 1) {
       return `Today at ${dateTimeFormat(dateString).substring(3)}`;
-    } else if (diffDays == 1) {
+    } else if (diffDays >= 1 && diffDays < 2) {
       return "Tomorrow";
     } else {
       return dateTimeFormat(dateString);
@@ -116,7 +119,7 @@ const EventList = (props) => {
 
   const handleCategoryFilter = (currentCategory) => {
     const result = APIData.filter((event) => {
-      return event.category === currentCategory;
+      return event.category.toLowerCase() === currentCategory.toLowerCase();
     });
     setFilteredData(result);
   };
@@ -125,7 +128,9 @@ const EventList = (props) => {
   const handleTodayFilter = (event) => {
     const buttonValue = event.target.value.toLowerCase();
     const result = APIData.filter((eventItem) => {
-      return findDay(eventItem.startDateTime).toLowerCase() === buttonValue;
+      return findDay(eventItem.startDateTime)
+        .toLowerCase()
+        .includes(buttonValue);
     });
     setFilteredData(result);
   };
