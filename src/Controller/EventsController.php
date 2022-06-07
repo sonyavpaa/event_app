@@ -19,29 +19,30 @@ class EventsController extends AbstractController
     {
         $events = $em->getRepository(Event::class)->findAll();
         $data = [];
-        
-        foreach($events as $event) {
+
+        foreach ($events as $event) {
             $data[] = [
-            'id'=> $event->getId(),
-            'name' => $event->getName(),
-            'organizer' => $event->getOrganizer(),
-            'description'=>$event->getDescription(),
-            'category'=>$event->getCategory(),
-            'tags'=>$event->getTags(),
-            'startDateTime'=>$event->getStartDateTime(),
-            'endDateTime'=>$event->getEndDateTime(),
-            'price'=>$event->getPrice(),
-            'image'=>$event->getImage(),
-            'streetname'=>$event->getStreetName(),
-            'city'=>$event->getCity(),
-            'venue'=>$event->getVenue(),
-            'postalCode'=>$event->getPostalCode()
+                'id' => $event->getId(),
+                'name' => $event->getName(),
+                'organizer' => $event->getOrganizer(),
+                'description' => $event->getDescription(),
+                'category' => $event->getCategory(),
+                'tags' => $event->getTags(),
+                'startDateTime' => $event->getStartDateTime(),
+                'endDateTime' => $event->getEndDateTime(),
+                'price' => $event->getPrice(),
+                'image' => $event->getImage(),
+                'streetname' => $event->getStreetName(),
+                'city' => $event->getCity(),
+                'venue' => $event->getVenue(),
+                'postalCode' => $event->getPostalCode(),
+                'userId' => $event->getUserId()
             ];
         }
         return $this->json($data);
     }
 
-    #[Route('/events/{id}', name: 'event_show', methods:['GET'])]
+    #[Route('/events/{id}', name: 'event_show', methods: ['GET'])]
 
     public function show(int $id, ManagerRegistry $doctrine): Response
 
@@ -53,32 +54,33 @@ class EventsController extends AbstractController
         }
 
         $data = [
-            'id'=> $event->getId(),
+            'id' => $event->getId(),
             'name' => $event->getName(),
             'organizer' => $event->getOrganizer(),
-            'description'=>$event->getDescription(),
-            'category'=>$event->getCategory(),
-            'tags'=>$event->getTags(),
-            'startDateTime'=>$event->getStartDateTime(),
-            'endDateTime'=>$event->getEndDateTime(),
-            'price'=>$event->getPrice(),
-            'image'=>$event->getImage(),
-            'streetname'=>$event->getStreetName(),
-            'city'=>$event->getCity(),
-            'venue'=>$event->getVenue(),
-            'postalCode'=>$event->getPostalCode()
+            'description' => $event->getDescription(),
+            'category' => $event->getCategory(),
+            'tags' => $event->getTags(),
+            'startDateTime' => $event->getStartDateTime(),
+            'endDateTime' => $event->getEndDateTime(),
+            'price' => $event->getPrice(),
+            'image' => $event->getImage(),
+            'streetname' => $event->getStreetName(),
+            'city' => $event->getCity(),
+            'venue' => $event->getVenue(),
+            'postalCode' => $event->getPostalCode(),
+            'userId' => $event->getUserId()
         ];
         return $this->json($data);
     }
-    
-    #[Route('/events', name: 'event_new', methods:['POST'])]
+
+    #[Route('/events', name: 'event_new', methods: ['POST'])]
     public function new(Request $request, ManagerRegistry $doctrine): Response
-    {   
+    {
         $token = $request->headers->get('Authorization');
         $tokenWithoutBearer = explode(" ", $token);
-        $tokenParts = explode(".", $tokenWithoutBearer[1]); 
+        $tokenParts = explode(".", $tokenWithoutBearer[1]);
         $tokenPayload = base64_decode($tokenParts[1]);
-        $jwtPayload = json_decode($tokenPayload); 
+        $jwtPayload = json_decode($tokenPayload);
 
         $em = $doctrine->getManager();
 
@@ -108,7 +110,7 @@ class EventsController extends AbstractController
         return $this->json('Created new event succesfully with id' . $event->getId());
     }
 
-    #[Route('/events/{id}', name: 'event_delete', methods:['DELETE'])]
+    #[Route('/events/{id}', name: 'event_delete', methods: ['DELETE'])]
 
     public function delete(int $id, ManagerRegistry $doctrine): Response
 
@@ -127,7 +129,7 @@ class EventsController extends AbstractController
         return $this->json('Deleted a event succesfully with id' . $id);
     }
 
-    #[Route('/events/{id}', name: 'event_edit', methods:['PUT', 'PATCH'])]
+    #[Route('/events/{id}', name: 'event_edit', methods: ['PUT', 'PATCH'])]
 
     public function edit(Request $request, int $id, ManagerRegistry $doctrine): Response
 
@@ -138,7 +140,7 @@ class EventsController extends AbstractController
         if (!$event) {
             return $this->json("No event found for id " . $id, 404);
         }
-        
+
         $content = json_decode($request->getContent());
 
         $event->setName($content->name);
@@ -158,20 +160,20 @@ class EventsController extends AbstractController
         $em->flush();
 
         $data = [
-        'id'=> $event->getId(),
-        'name'=>$event->getName(),
-        'organizer' => $event->getOrganizer(),
-        'description'=>$event->getDescription(),
-        'category'=>$event->getCategory(),
-        'venue'=>$event->getVenue(),
-        'tags'=>$event->getTags(),
-        'startDateTime'=>$event->getStartDateTime(),
-        'endDateTime'=>$event->getEndDateTime(),
-        'price'=>$event->getPrice(),
-        'image'=>$event->getImage(),
-        'streetname'=>$event->getStreetname(),
-        'city'=>$event->getCity(),
-        'postalCode'=>$event->getPostalCode()
+            'id' => $event->getId(),
+            'name' => $event->getName(),
+            'organizer' => $event->getOrganizer(),
+            'description' => $event->getDescription(),
+            'category' => $event->getCategory(),
+            'venue' => $event->getVenue(),
+            'tags' => $event->getTags(),
+            'startDateTime' => $event->getStartDateTime(),
+            'endDateTime' => $event->getEndDateTime(),
+            'price' => $event->getPrice(),
+            'image' => $event->getImage(),
+            'streetname' => $event->getStreetname(),
+            'city' => $event->getCity(),
+            'postalCode' => $event->getPostalCode()
         ];
 
         return $this->json($data);
