@@ -132,6 +132,8 @@ const CreateEvent = () => {
         document.querySelector(".createForm").reset();
     };
 
+    const now = new Date().toISOString().substring(0, 16);
+
     return (
         <>
             <div className="formFrame">
@@ -149,6 +151,7 @@ const CreateEvent = () => {
                                 id="name"
                                 onChange={changeData}
                                 placeholder="Event name"
+                                required
                             />
                         </div>
                         <div className="form-group my-1">
@@ -159,6 +162,7 @@ const CreateEvent = () => {
                                 id="organizer"
                                 onChange={changeData}
                                 placeholder="Organizer"
+                                required
                             />
                         </div>
                         <div>
@@ -169,6 +173,7 @@ const CreateEvent = () => {
                                 id="description"
                                 onChange={changeData}
                                 placeholder="Description"
+                                required
                             />
                         </div>
                         <div className="my-1 wrapper form-control">
@@ -235,6 +240,7 @@ const CreateEvent = () => {
                                 id="venue"
                                 placeholder="Venue name: e.g. Löyly"
                                 onChange={changeData}
+                                required
                             />
                             <input
                                 className="form-control my-1"
@@ -243,6 +249,7 @@ const CreateEvent = () => {
                                 id="streetname"
                                 placeholder="Street: e.g. Annankatu 1"
                                 onChange={changeData}
+                                required
                             />
                             <input
                                 className="form-control my-1"
@@ -251,6 +258,7 @@ const CreateEvent = () => {
                                 id="postalcode"
                                 placeholder="Postal Code: e.g 00100"
                                 onChange={changeData}
+                                required
                             />
                         </div>
 
@@ -267,6 +275,8 @@ const CreateEvent = () => {
                                 name="startDateTime"
                                 id="startDateTime"
                                 onChange={changeData}
+                                required
+                                min={now}
                             />
                         </div>
                         <div className="form-group my-3">
@@ -282,6 +292,8 @@ const CreateEvent = () => {
                                 name="endDateTime"
                                 id="endDateTime"
                                 onChange={changeData}
+                                required
+                                min={now}
                             />
                         </div>
                         <div>
@@ -291,7 +303,8 @@ const CreateEvent = () => {
                                 name="price"
                                 id="price"
                                 onChange={changeData}
-                                placeholder="Price"
+                                placeholder="Price: free / 1e etc..."
+                                required
                             />
                         </div>
                         <div>
@@ -317,3 +330,4 @@ const CreateEvent = () => {
 };
 
 export default CreateEvent;
+
