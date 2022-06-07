@@ -17,7 +17,6 @@ const EventList = (props) => {
         const fetchLocalEvents = async () => {
             setLoading(true);
             const response = await axios.get("/api/events");
-            console.log(response.data);
             // filter out past events
             const validEvents = response?.data
 

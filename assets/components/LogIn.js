@@ -18,8 +18,11 @@ const LogIn = ({ loggedInUser, setLoggedInUser }) => {
         try {
             const response = await axios.post("/api/login", data);
             window.localStorage.setItem(
-                "loggedInUserToken",
-                JSON.stringify({ token: response.data.token })
+                "loggedInUser",
+                JSON.stringify({
+                    userId: data.email,
+                    token: response.data.token,
+                })
             );
         } catch (error) {
             console.error(error.message);
