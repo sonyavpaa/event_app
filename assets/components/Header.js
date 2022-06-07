@@ -101,30 +101,6 @@ const Header = ({ loggedInUser, setLoggedInUser }) => {
                                     </li>
                                 </>
                             )}
-
-                            {!loggedInUser && (
-                                <>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/login">
-                                            Login
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/signup">
-                                            Sign up
-                                        </Link>
-                                    </li>
-                                </>
-                            )}
-                            {loggedInUser && (
-                                <>
-                                    <li className="nav-item">
-                                        <button type="button" onClick={logout}>
-                                            Logout
-                                        </button>
-                                    </li>
-                                </>
-                            )}
                         </ul>
                         <div className="search">
                             <form className="d-flex" role="search">
@@ -169,6 +145,35 @@ const Header = ({ loggedInUser, setLoggedInUser }) => {
                                 </div>
                             )}
                         </div>
+                        <ul className="navbar-nav mb-2 mb-lg-0">
+                            {!loggedInUser && (
+                                <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/login">
+                                            Login
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/signup">
+                                            Sign up
+                                        </Link>
+                                    </li>
+                                </>
+                            )}
+                            {loggedInUser && (
+                                <>
+                                    <li className="nav-item">
+                                        <button
+                                            className="btn btn-primary"
+                                            type="button"
+                                            onClick={logout}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </>
+                            )}
+                        </ul>
                     </div>
                 </div>
             </nav>

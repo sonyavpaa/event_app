@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
@@ -13,6 +13,17 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const Main = () => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {
+    const userFromLocalStorage = window.localStorage.getItem("loggedInUser");
+
+    if (userFromLocalStorage) {
+      const user = JSON.parse(userFromLocalStorage);
+      console.log(user);
+      setLoggedInUser({ userId: user.userId });
+      console.log("loggedinUser useEffect", loggedInUser);
+    }
+  }, []);
 
   return (
     <Router>
