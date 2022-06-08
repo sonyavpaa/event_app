@@ -18,6 +18,7 @@ const EventList = (props) => {
     const fetchLocalEvents = async () => {
       setLoading(true);
       const response = await axios.get("/api/events");
+
       // filter out past events
       const validEvents = response?.data
 
@@ -77,7 +78,9 @@ const EventList = (props) => {
     const timeDiff = eventDate.getTime() - currentDate.getTime();
     const diffDays = Math.round(timeDiff / (1000 * 3600 * 24));
     if (diffDays < 1) {
-      return `Today at ${dateTimeFormat(dateString).substring(3)}`;
+      return `Today at ${dateTimeFormat(dateString)
+        .substring(3)
+        .substring(0, 7)}`;
     } else if (diffDays >= 1 && diffDays < 2) {
       return "Tomorrow";
     } else {
@@ -220,7 +223,7 @@ const EventList = (props) => {
                   <p>{event?.price}</p>
                   <p className="text-danger">{findDay(event?.startDateTime)}</p>
                   <p>
-                    {event?.venue} . {event?.city}
+                    {event?.venue} - {event?.city}
                   </p>
                   <Link
                     to={`events/${event.id}`}
@@ -251,7 +254,9 @@ const EventList = (props) => {
                     <p className="text-danger">
                       {dateTimeFormat(event.startDateTime)}
                     </p>
-                    <p>{event?.venue}</p>
+                    <p>
+                      {event?.venue} - {event?.city}
+                    </p>
                     <Link
                       to={`events/${event.id}`}
                       className="btn btn-primary mx-1"
