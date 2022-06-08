@@ -198,16 +198,6 @@ const CreateEvent = () => {
                                     <span className="tagSpan">{maxTags}</span>{" "}
                                     tags are remaining
                                 </p>
-                                <button
-                                    className="button form-control row my-1 mx-0"
-                                    onClick={(e) => emptyTags(e)}
-                                    style={{
-                                        width: "80%",
-                                        alignSelf: "flex-end",
-                                    }}
-                                >
-                                    Remove all tags
-                                </button>
                             </div>
                         </div>
                         <div className="category from-group row my-1">
